@@ -1,7 +1,7 @@
 const fileUploadElement = document.getElementById('file-upload');
 const b64Area = document.getElementById('b64-area');
 
-// ファイルのバイナリデータからBase64に変換する
+// ファイルのバイナリデータをBase64に変換する
 const fileToBase64 = (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
