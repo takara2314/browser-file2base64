@@ -1,24 +1,14 @@
 const fileUploadElement = document.getElementById('file-upload');
 const b64Area = document.getElementById('b64-area');
 
-// ファイルをBase64に変換する関数
+// ファイルのバイナリデータからBase64に変換する
 const fileToBase64 = (file) => {
-  // ファイルをテキストとして読み込む
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-
-  return (
-    new Promise((resolve, reject) => {
-      // 読み込めたとき
-      reader.addEventListener('load', (e) => {
-        resolve(reader.result);
-      });
-      // 読み込みエラー
-      reader.addEventListener('error', (e) => {
-        reject(reader.error);
-      });
-    })
-  );
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
 };
 
 // ファイルが選択されたときに行う処理
